@@ -1,0 +1,14 @@
+# Datos/dumps (no subir)
+*.bak
+*.dump
+*.sql
+*.7z
+*.zip
+*.rar
+
+# Exportaciones grandes
+*.csv
+*.xlsx
+
+# EXCEPCIÓN: sí permitimos el manifest
+!docs/data_inventory/manifest.csv
