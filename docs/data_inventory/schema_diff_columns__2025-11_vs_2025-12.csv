@@ -1,0 +1,5 @@
+change,table_name,column_name,data_type
+ADDED,pendiente,fec_ini,date
+ADDED,pendiente,fec_res,date
+ADDED,pendiente,num_res,char(5)
+REMOVED,pendiente,fec_pen,date
