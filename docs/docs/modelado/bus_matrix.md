@@ -39,3 +39,36 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
 3. Identificar campos de medida (montos/valores) y eventos de tiempo (fechas) para cada hecho.
 4. Revisar tablas del `review_queue.csv` para descartar/confirmar relevancia analítica.
 5. Mapear KPIs a campos fuente (KPI -> tabla -> columna -> transformación -> DW).
+## Evidencia estructural (columns.csv → fact_signals_summary.csv) — Baseline 2025-12
+
+### proyecto
+- Grano candidato: 1 fila por `ide_pro`
+- ide_cols: `ide_pro`, `ide_conv`, `ide_dep`, `ide_per`
+- date_cols: `fec_act_cum`, `fec_apr`, `fec_ins_pro`, `fec_rev_pro`, `fec_sus_con`, `fec_ter_pro`, `fec_ter_pry`
+- medidas numéricas (excl. ide_*): `act_cum_pro`, `acu_apr_pro`, `acu_ter_pro`, `dur_pro`, `edi_por`, `pun_ant`, `reg_por`, `rev_por`, `sal_pro`, `val_con`, `val_pro`, `val_sol`, `val_uefe`, `val_uesp`
+
+### movimiento
+- Grano candidato: 1 fila por `ide_mov`
+- ide_cols: `ide_mov`, `ide_pro`, `ide_provN`, `ide_provS`
+- date_cols: `fec_acto`, `fec_adm`, `fec_dev`, `fec_env`, `fec_ini`, `fec_mov`, `fec_reg`, `fec_ter`
+- medidas numéricas (excl. ide_*): `num_mov`, `plazo`, `res_mov`, `vb_por`, `val_mov`, `val_movN`
+- Nota: `ide_provN` y `ide_provS` implican role-playing en Dim_Proveedor.
+
+### solicitud / solicitudc
+- Evidencia: misma señal estructural en ambas tablas (mismas llaves, fechas y medidas)
+- Grano candidato: 1 fila por `ide_sol`
+- ide_cols: `ide_sol`, `ide_pro`
+- date_cols: `fec_adm`, `fec_dev`, `fec_env`, `fec_ini`, `fec_pag`, `fec_ter`
+- medidas numéricas (excl. ide_*): `res_sol`, `vb_por`, `val_tot`
+- Decisión v1: unificar en DW con un campo `source_table` (solicitud/solicitudc).
+
+### cofinanciacion
+- Grano candidato: 1 fila por `ide_cof`
+- ide_cols: `ide_cof`, `ide_ent`, `ide_pro`
+- date_cols: (no detectadas)
+- medidas: `val_efe`, `val_esp`, `val_tot`
+- Nota: modelar como hecho atemporal o snapshot por fecha de carga (ETL) hasta hallar fecha real.
+
+### plancompras (opcional v2)
+- ide_cols: `ide_plan`, `ide_pro`
+- medidas: `mes1..mes24` (requiere unpivot a filas en DW)
