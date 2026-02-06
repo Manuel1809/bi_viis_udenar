@@ -72,3 +72,36 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
 ### plancompras (opcional v2)
 - ide_cols: `ide_plan`, `ide_pro`
 - medidas: `mes1..mes24` (requiere unpivot a filas en DW)
+
+  ### cdp  (evidencia desde fact_signals_summary.csv)
+- Grano candidato: 1 fila por `ide_cdp` (validar unicidad con datos)
+- ide_cols: `ide_cdp`, `ide_pro`
+- date_cols: `fec_cdp`
+- medidas: `val_cdp`
+
+### compromiso  (evidencia desde fact_signals_summary.csv)
+- Grano candidato: 1 fila por `ide_com` (validar unicidad con datos)
+- ide_cols: `ide_com`, `ide_pro`
+- date_cols: `fec_cum`
+- medidas numéricas detectadas: `pun_act` (confirmar significado con diccionario/atributos)
+
+### imputacioncdp  (evidencia desde fact_signals_summary.csv)
+- Grano candidato: por confirmar (tabla tipo “detalle/puente”)
+- ide_cols: `ide_acto`, `ide_cdp`, `ide_reg`
+- date_cols: (no detectadas)
+- medidas: `val_imp`
+- Nota: requiere auditoría de unicidad para decidir si el grano es `ide_reg` o combinación (`ide_cdp`, `ide_acto`).
+
+### presupuestos  (evidencia desde fact_signals_summary.csv)
+- Grano candidato: 1 fila por `ide_pro`
+- ide_cols: `ide_pro`
+- date_cols: (no detectadas)
+- medidas numéricas (líneas presupuestales): `bib`, `cap`, `eqlab`, `matpri`, `monit`, `mov`, `ops`, `pap`, `pub`, `respel`, `salcam`, `servlab`, `servnocal`, `sweq`
+
+### temporalpresupuestos  (evidencia desde fact_signals_summary.csv)
+- Grano candidato: 1 fila por `ide_pro`
+- ide_cols: `ide_pro`
+- date_cols: (no detectadas)
+- medidas numéricas: mismas de `presupuestos`
+- Nota: aparente tabla temporal; se define en ETL si se usa como staging o si contiene histórico.
+
