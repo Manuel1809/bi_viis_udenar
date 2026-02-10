@@ -105,35 +105,6 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
 - medidas numéricas: mismas de `presupuestos`
 - Nota: aparente tabla temporal; se define en ETL si se usa como staging o si contiene histórico.
 
-### Validación de grano (auditoría en MySQL baseline siviis_2025_12)
-
-- cdp:
-  - Resultado: COUNT(*) = 1721; COUNT(DISTINCT ide_cdp) = 1721
-  - Grano confirmado: 1 fila por ide_cdp
-  - Fecha evento: fec_cdp
-  - Medida: val_cdp
-  - Conforma con: Dim_Proyecto (ide_pro), Dim_Tiempo (fec_cdp)
-
-- compromiso:
-  - Resultado: COUNT(*) = 2800; COUNT(DISTINCT ide_com) = 2800
-  - Grano confirmado: 1 fila por ide_com
-  - Fecha evento: fec_cum
-  - Medida numérica detectada: pun_act (pendiente semántica)
-  - Conforma con: Dim_Proyecto (ide_pro), Dim_Tiempo (fec_cum)
-
-- imputacioncdp:
-  - Resultado: COUNT(*) = 1; COUNT(DISTINCT ide_reg) = 1; COUNT(DISTINCT CONCAT(ide_cdp,'|',ide_acto)) = 1
-  - Grano confirmado (baseline): 1 fila por ide_reg
-  - Medida: val_imp
-  - Llaves: ide_cdp, ide_acto, ide_reg
-  - Nota: tabla tipo detalle/distribución asociada a CDP (validar con más años).
-
-  cdp: 1721 = 1721 (1 fila por ide_cdp)
-
-compromiso: 2800 = 2800 (1 fila por ide_com)
-
-imputacioncdp: baseline 1 fila, grano ide_reg (revalidar con mas años) 
-
 ## Validación de grano (auditoría en MySQL 8 — baseline 2025-12, schema: siviis_2025_12)
 
 Resultados de auditoría (COUNT(*) vs COUNT(DISTINCT ...)):
