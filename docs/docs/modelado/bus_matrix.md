@@ -75,24 +75,23 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
 - medidas: `mes1..mes24` (requiere unpivot a filas en DW)
 
 ### cdp  (evidencia desde fact_signals_summary.csv)
-- Grano candidato: 1 fila por `ide_cdp` (validado con auditoría baseline)
+- Grano confirmado: 1 fila por `ide_cdp` (1721 = 1721 en baseline)
 - ide_cols: `ide_cdp`, `ide_pro`
 - date_cols: `fec_cdp`
 - medidas: `val_cdp`
 
 ### compromiso  (evidencia desde fact_signals_summary.csv)
-- Grano candidato: 1 fila por `ide_com` (validado con auditoría baseline)
+- Grano confirmado: 1 fila por `ide_com` (2800 = 2800 en baseline)
 - ide_cols: `ide_com`, `ide_pro`
 - date_cols: `fec_cum`
-- medidas numéricas detectadas: `pun_act` (confirmar significado con diccionario/atributos)
+- medidas numéricas detectadas: `pun_act` (pendiente confirmar significado con diccionario/atributos)
 
 ### imputacioncdp  (evidencia desde fact_signals_summary.csv)
-- Grano candidato: 1 fila por `ide_reg` (validado SOLO en baseline; revalidar con más años)
+- Grano confirmado (solo baseline): 1 fila por `ide_reg` (total=1)
 - ide_cols: `ide_acto`, `ide_cdp`, `ide_reg`
 - date_cols: (no detectadas)
 - medidas: `val_imp`
-- Nota: revalidar con años 2019–2025 para confirmar estabilidad del grano (baseline tiene 1 fila).
-
+- Nota: tabla tipo detalle/distribución asociada a CDP; revalidar grano con más años.
 
 ### presupuestos  (evidencia desde fact_signals_summary.csv)
 - Grano candidato: 1 fila por `ide_pro`
