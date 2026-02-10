@@ -1,7 +1,7 @@
 # Modelo lógico DW v1 (Evidencia-driven) — SIVIIS/VIIS
 
 ## Enfoque
-Se adopta arquitectura tipo Bus (Kimball):procesos (hechos) integrados por dimensiones conformadas y no se mezclan granos.
+Se adopta arquitectura tipo Bus (Kimball): procesos (hechos) integrados por dimensiones conformadas y no se mezclan granos.
 
 ## Hechos núcleo (v1)
 
