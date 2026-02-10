@@ -3,7 +3,7 @@
 ## Enfoque de arquitectura
 - Arquitectura tipo Bus (Kimball): múltiples procesos (hechos) integrados mediante dimensiones conformadas.
 - Esquema: constelación de hechos (varios fact) + dimensiones compartidas.
-- Regla: no se mezclan granos dentro de un mismo hecho (grano = contrato de diseño).
+- Regla: no se mezclan granos dentro de un mismo hecho (grano = contrato de diseño). 
 
 ## Dimensiones conformadas mínimas (v1.2)
 - Dim_Proyecto (NK: ide_pro)
