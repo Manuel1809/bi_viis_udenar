@@ -127,3 +127,9 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
   - Medida: val_imp
   - Llaves: ide_cdp, ide_acto, ide_reg
   - Nota: tabla tipo detalle/distribución asociada a CDP (validar con más años).
+
+  cdp: 1721 = 1721 (1 fila por ide_cdp)
+
+compromiso: 2800 = 2800 (1 fila por ide_com)
+
+imputacioncdp: baseline 1 fila, grano ide_reg (revalidar con mas años)  
