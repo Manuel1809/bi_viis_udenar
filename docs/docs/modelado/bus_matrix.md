@@ -132,4 +132,26 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
 
 compromiso: 2800 = 2800 (1 fila por ide_com)
 
-imputacioncdp: baseline 1 fila, grano ide_reg (revalidar con mas años)  
+imputacioncdp: baseline 1 fila, grano ide_reg (revalidar con mas años) 
+
+## Validación de grano (auditoría en MySQL 8 — baseline 2025-12, schema: siviis_2025_12)
+
+Resultados de auditoría (COUNT(*) vs COUNT(DISTINCT ...)):
+
+- cdp:
+  - COUNT(*) = 1721
+  - COUNT(DISTINCT ide_cdp) = 1721
+  - Grano confirmado: 1 fila por ide_cdp
+
+- compromiso:
+  - COUNT(*) = 2800
+  - COUNT(DISTINCT ide_com) = 2800
+  - Grano confirmado: 1 fila por ide_com
+
+- imputacioncdp:
+  - COUNT(*) = 1
+  - COUNT(DISTINCT ide_reg) = 1
+  - COUNT(DISTINCT CONCAT(ide_cdp,'|',ide_acto)) = 1
+  - Grano confirmado (solo baseline): 1 fila por ide_reg
+  - Nota: revalidar con más años (2019–2025) para confirmar estabilidad del grano.
+
