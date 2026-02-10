@@ -39,6 +39,7 @@ en `columns.csv` y relaciones via `ide_key_tables_top12.csv`.
 3. Identificar campos de medida (montos/valores) y eventos de tiempo (fechas) para cada hecho.
 4. Revisar tablas del `review_queue.csv` para descartar/confirmar relevancia analítica.
 5. Mapear KPIs a campos fuente (KPI -> tabla -> columna -> transformación -> DW).
+
 ## Evidencia estructural (columns.csv → fact_signals_summary.csv) — Baseline 2025-12
 
 ### proyecto
