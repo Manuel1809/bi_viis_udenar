@@ -1,7 +1,7 @@
 # Modelo lógico DW v1 (Evidencia-driven) — SIVIIS/VIIS
 
 ## Enfoque
-Se adopta arquitectura tipo Bus (Kimball)
+Se adopta arquitectura tipo Bus (Kimball):procesos (hechos) integrados por dimensiones conformadas y no se mezclan granos.
 
 ## Hechos núcleo (v1)
 
@@ -39,27 +39,4 @@ Se adopta arquitectura tipo Bus (Kimball)
 - Dim_Tiempo (role-playing: una FK por cada fec_*)
 - Dim_Proveedor_N (NK: ide_provN) y Dim_Proveedor_S (NK: ide_provS) [provisional hasta hallar tabla maestra]
 
- ## Hechos añadidos (v1.2) — evidencia baseline 2025-12
 
-### Fact_CDP (fuente: cdp)
-- Grano: 1 fila por ide_cdp
-- Dimensiones: Tiempo (rol: fec_cdp), Proyecto (ide_pro)
-- Medida: val_cdp
-
-### Fact_Compromiso (fuente: compromiso)
-- Grano: 1 fila por ide_com
-- Dimensiones: Tiempo (rol: fec_cum), Proyecto (ide_pro)
-- Medida numérica detectada: pun_act (pendiente confirmar semántica)
-
-### Fact_ImputacionCDP (fuente: imputacioncdp)
-- Grano: por confirmar con auditoría (ide_reg vs (ide_cdp, ide_acto))
-- Dimensiones: CDP (ide_cdp), Acto/Documento (ide_acto), Proyecto (vía cdp→ide_pro)
-- Medida: val_imp
-- Nota: si es “detalle” de CDP, puede actuar como hecho de distribución (line-item).
-
-### Fact_Presupuesto (fuente: presupuestos / temporalpresupuestos)
-- Grano: 1 fila por ide_pro
-- Dimensiones: Proyecto (ide_pro)
-- Medidas: bib, cap, eqlab, matpri, monit, mov, ops, pap, pub, respel, salcam, servlab, servnocal, sweq
-- Nota: no hay fechas en baseline; si se requiere análisis temporal se usa snapshot por fecha de carga (ETL) o se identifica fecha real en otras tablas.
- 
