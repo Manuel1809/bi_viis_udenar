@@ -22,3 +22,4 @@ FROM siviis_2025_12.convocatoria;
 UPDATE dw_siviis.dim_convocatoria
 SET es_financiada = 0
 WHERE ide_conv IN (5,10,11);
+ 
