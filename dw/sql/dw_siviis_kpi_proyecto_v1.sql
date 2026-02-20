@@ -39,7 +39,7 @@ SET
   dp.sal_pro     = p.sal_pro
 WHERE dp.es_inferido = 0;
 
-/* 5) Vista base para KPIs financieros (excluye inferidos + conv no financiadas) */
+/* 5) Vista base para KPIs financieros (excluye inferidos + conv no financiadas) 
 CREATE OR REPLACE VIEW dw_siviis.vw_proyecto_kpi_fin AS
 SELECT
   p.*,
@@ -47,7 +47,7 @@ SELECT
 FROM dw_siviis.dim_proyecto p
 JOIN dw_siviis.dim_convocatoria c ON c.ide_conv = p.ide_conv
 WHERE p.es_inferido = 0
-  AND c.es_financiada = 1;
+  AND c.es_financiada = 1;*/
 
 /* 6) Vista de fecha fin ajustada (plan inicial vs prórrogas aprobadas) */
 CREATE OR REPLACE VIEW dw_siviis.vw_proyecto_fin_ajustada AS
