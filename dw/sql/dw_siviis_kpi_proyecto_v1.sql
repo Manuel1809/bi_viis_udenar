@@ -1,3 +1,4 @@
+/* 
 /* dw_siviis_kpi_proyecto_v1.sql
    Baseline fuente: siviis_2025_12
 */
