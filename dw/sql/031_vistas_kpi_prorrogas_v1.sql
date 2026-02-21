@@ -67,3 +67,19 @@ LEFT JOIN (
   WHERE est_prr='1' AND nue_fec_ter IS NOT NULL
 ) pre ON pre.ide_pro = b.ide_pro
 GROUP BY grupo;
+/* 3) KPI:extension_prorrogas  */
+CREATE OR REPLACE VIEW dw_siviis.vw_kpi_extension_prorrogas AS
+SELECT
+  COUNT(*) AS proyectos_base_fin,
+  SUM(fec_fin_inicial IS NULL OR fec_fin_inicial < '2000-01-01') AS sin_fin_inicial_valida,
+  SUM(fec_fin_inicial >= '2000-01-01') AS con_fin_inicial_valida,
+  SUM(fec_fin_inicial >= '2000-01-01' AND fec_fin_ajustada > fec_fin_inicial) AS con_extension,
+  ROUND(
+    SUM(fec_fin_inicial >= '2000-01-01' AND fec_fin_ajustada > fec_fin_inicial)
+    / NULLIF(SUM(fec_fin_inicial >= '2000-01-01'),0)
+  , 4) AS pct_con_extension_sobre_validos,
+  ROUND(AVG(CASE WHEN fec_fin_inicial >= '2000-01-01' AND fec_fin_ajustada > fec_fin_inicial
+                 THEN DATEDIFF(fec_fin_ajustada, fec_fin_inicial) END), 2) AS prom_extension_dias,
+  MAX(CASE WHEN fec_fin_inicial >= '2000-01-01' AND fec_fin_ajustada > fec_fin_inicial
+           THEN DATEDIFF(fec_fin_ajustada, fec_fin_inicial) END) AS max_extension_dias
+FROM dw_siviis.vw_proyecto_fin_ajustada;
