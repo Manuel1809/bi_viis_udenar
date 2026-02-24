@@ -3,7 +3,7 @@
    Baseline fuente: siviis_2025_12
 */
 
-/* KPI: Terminados con CDP (2014+) pero sin movimientos (2014+) */
+/* KPI: Terminados con CDP (2014+) pero sin movimientos (2014+) */ 
 CREATE OR REPLACE VIEW dw_siviis.vw_kpi_terminados_cdp_sin_mov_2014plus AS
 SELECT
   DATE('2014-01-01') AS inicio_cobertura,
